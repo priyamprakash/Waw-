@@ -24,10 +24,16 @@ function main() {
     const server = new grpc.Server();
     server.addService(helloProto.service, { SayHello: sayHello });
     const PORT = '0.0.0.0:50051';
-    server.bindAsync(PORT, grpc.ServerCredentials.createInsecure(), () => {
-        console.log(`Server is running at ${PORT}`);
+    // server.bindAsync(PORT, grpc.ServerCredentials.createInsecure(), () => {
+    //     console.log(`Server is running at ${PORT}`);
+    //     server;
+    // });
+    const grpcPort = process.env.PORT || 50051;
+    server.bindAsync(`0.0.0.0:${grpcPort}`, grpc.ServerCredentials.createInsecure(), () => {
+        console.log(`Server running on port ${grpcPort}`);
         server;
     });
+
 }
 
 main();
