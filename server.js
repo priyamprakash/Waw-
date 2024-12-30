@@ -19,7 +19,7 @@ function sayHello(call, callback) {
     callback(null, { message: `Hello, ${name}!` });
 }
 
-// Start the gRPC server
+// Start the gRPC server here
 function main() {
     const server = new grpc.Server();
     server.addService(helloProto.service, { SayHello: sayHello });
